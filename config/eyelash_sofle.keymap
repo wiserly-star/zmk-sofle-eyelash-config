@@ -69,7 +69,7 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs
   vol_encoder: vol_encoder {
       compatible = "zmk,behavior-sensor-rotate";
       #sensor-binding-cells = <0>;
-      bindings = <&kp LSHIFT LALT C_VOL_UP>, <&kp LSHIFT LALT C_VOL_DN>;
+      bindings = <&vol_up_fine>, <&vol_dn_fine>;
       tap-ms = <20>;
   };
 };
@@ -118,6 +118,14 @@ ZMK_COMBO(rbkt, &kp RBKT, RB2 RB3, BASE, COMBO_TERM_FAST, COMBO_IDLE_FAST)
 /* ──────────────────────────────────────────────────────────────── */
 /*                            Behaviors                             */
 /* ──────────────────────────────────────────────────────────────── */
+
+ZMK_BEHAVIOR(vol_up_fine, macro,
+  bindings = <&macro_press &kp LSHIFT>, <&macro_press &kp LALT>, <&macro_tap &kp C_VOL_UP>, <&macro_release &kp LALT>, <&macro_release &kp LSHIFT>;
+)
+
+ZMK_BEHAVIOR(vol_dn_fine, macro,
+  bindings = <&macro_press &kp LSHIFT>, <&macro_press &kp LALT>, <&macro_tap &kp C_VOL_DN>, <&macro_release &kp LALT>, <&macro_release &kp LSHIFT>;
+)
 
 ZMK_BEHAVIOR(mcaps, macro,
   tap-ms = <200>;
